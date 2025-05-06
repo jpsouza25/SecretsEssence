@@ -1,0 +1,24 @@
+.container-fluid {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+  }
+  
+  .bg-primary {
+    background: #6a11cb;
+    top: 20%;
+    left: 10%;
+  }
+  
+  .bg-warning {
+    background: #000000;
+    bottom: 15%;
+    right: 15%;
+  }
+  
