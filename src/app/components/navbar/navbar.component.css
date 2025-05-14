@@ -1,0 +1,68 @@
+.site-title {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .nav-items {
+    margin-left: 2rem;
+  }
+  
+  @media (max-width: 992px) {
+    .site-title {
+      font-size: 1.5rem !important;
+    }
+    
+    .nav-items {
+      gap: 1.5rem !important;
+      margin-left: 1rem;
+    }
+    
+    .user-icon-container {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .site-title {
+      display: none !important;
+    }
+    
+    .nav-items {
+      margin-left: 0;
+    }
+  }
+
+.dropdown-menu {
+  min-width: 200px;
+  transition: all 0.3s ease;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bi-list {
+  transition: transform 0.3s ease;
+}
+
+.bi-list.active {
+  transform: rotate(90deg);
+}

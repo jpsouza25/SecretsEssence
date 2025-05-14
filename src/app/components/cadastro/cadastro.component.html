@@ -1,37 +1,64 @@
-<div class="container-fluid">
-    <div class="card align-items-center">
-        <div class="col-md-6 d-flex flex-column justify-content-center py-5">
-          <h2 class="text-white text-center mb-4">Formulário de Cadastro</h2>
-          <form [formGroup]="cadastroForm">
-            <div class="form-group">
-              <label class="text-light" for="nome">Nome</label>
-              <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="Seu Nome" />
-            </div>
-            <div class="form-group">
-                <label class="text-light" for="data">Data de Nascimento</label>
-                <input type="date" class="form-control" formControlName="birthDate" id="birthDate" />
-              </div>
-            <div class="form-group">
-              <label class="text-light" for="usuario">Usuário</label>
-              <input type="text" class="form-control" formControlName="username" id="username" placeholder="Usuário" />
-            </div>
-            <div class="form-group">
-              <label class="text-light" for="password">Senha</label>
-              <input type="password" class="form-control" formControlName="password" id="password" placeholder="Senha" />
-            </div>
-            <div class="form-group">
-              <label class="text-light" for="password">Email</label>
-              <input type="email" class="form-control" formControlName="email" id="email" placeholder="email" />
-            </div>
-            <div *ngIf="mensagemErro" class="alert alert-danger">
+<div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <div class="card position-relative"
+    style="width: 100%; max-width: 500px; backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.1); border-radius: 20px;">
+    <div class="position-absolute" style="top: 20px; left: 20px;">
+      <button type="button" class="btn btn-outline-light px-1.5 py-1.5" (click)="voltar()" routerLink="/login">
+        <i class="bi bi-caret-left-fill"></i>
+      </button>
+    </div>
+
+    <div class="card-body p-5">
+      <h2 class="text-white text-center mb-5">Formulário de Cadastro</h2>
+
+      <form [formGroup]="cadastroForm" class="mt-4">
+        <div class="row g-4">
+          <div class="col-12">
+            <label class="form-label text-light">Nome Completo</label>
+            <input type="text" class="form-control bg-transparent text-light" formControlName="firstName"
+              placeholder="Seu Nome">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label text-light">Data de Nascimento</label>
+            <input type="date" class="form-control bg-transparent text-light" formControlName="birthDate">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label text-light">Nome de Usuário</label>
+            <input type="text" class="form-control bg-transparent text-light" formControlName="username"
+              placeholder="Usuário">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label text-light">Senha</label>
+            <input type="password" class="form-control bg-transparent text-light" formControlName="password"
+              placeholder="Senha">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label text-light">Email</label>
+            <input type="email" class="form-control bg-transparent text-light" formControlName="email"
+              placeholder="email@exemplo.com">
+          </div>
+
+          <div *ngIf="mensagemErro" class="col-12">
+            <div class="alert alert-danger">
               {{ mensagemErro }}
             </div>
-            <button type="submit" class="btn btn-dark btn-block mt-3 px-4 py-2" [disabled]="cadastroForm.invalid || carregando" (click)="cadastrar(); login()" >
-              <span *ngIf="!carregando">Cadastrar</span>
-              <span *ngIf="carregando">Aguarde...</span>
-            </button>
-          </form>
-        </div>
-      </div>
+          </div>
 
+          <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-dark w-100 py-3" [disabled]="cadastroForm.invalid || carregando"
+              (click)="cadastrar()">
+              <span *ngIf="!carregando">Cadastrar</span>
+              <span *ngIf="carregando">
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                Cadastrando...
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
+</div>

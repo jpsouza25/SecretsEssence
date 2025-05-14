@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
-  imports:[CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
@@ -29,7 +29,7 @@ export class CadastroComponent {
     });
   }
 
-  login() {
+  voltar() {
     this.router.navigate(['/login']);
   }
 
