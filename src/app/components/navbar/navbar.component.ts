@@ -11,10 +11,21 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   isDropdownOpen = false;
   constructor(private router: Router) {}
-  toggleDropdown() {
+  Dropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
-
+  agendamentos() {
+    this.router.navigate(['/agendamentos']);
+  }
+  agendar() {
+    this.router.navigate(['/agendar']);
+  }
+  usuario() {
+    this.router.navigate(['/usuario']);
+  }
+  config() {
+    this.router.navigate(['/config']);
+  }
   sair() {
     this.router.navigate(['/login']);
   }
