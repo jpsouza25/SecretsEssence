@@ -40,7 +40,7 @@ export class LoginComponent {
       const loginSucesso = this.loginService.login(username, password);
 
       if (loginSucesso) {
-        this.router.navigate(['/agendamentos']);
+        this.router.navigate(['/home']);
       } else {
         this.mensagemErro = 'Usuário ou senha inválidos.';
       }

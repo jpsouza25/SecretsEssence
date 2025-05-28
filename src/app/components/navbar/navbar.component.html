@@ -1,53 +1,52 @@
-<nav class="navbar fixed-top navbar-expand-lg p-3" style="backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+<nav class="navbar fixed-top navbar-expand-lg navbar-glass">
   <div class="container-fluid">
-    <div class="d-flex align-items-center gap-4">
-      <div class="d-flex align-items-center">
-        <a class="navbar-brand me-2" href="#">
-          <img src="agendaiFavicon.png" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
-        </a>
-        <span class="text-white fs-3 fw-bold site-title">AgendAI</span>
-      </div>
 
-      <div class="d-flex gap-4 nav-items">
-        <a role="button" class="nav-link text-white text-decoration-none hover-effect" (click)="agendamentos()">
-          Agendamentos
-        </a>
-        <a role="button" class="nav-link text-white text-decoration-none hover-effect"(click)="agendar()">
-          Agendar Sala
-        </a>
+    <div class="navbar-brand-container">
+      <a class="navbar-brand" href="#">
+        <img src="agendaiFavicon.png" alt="Logo" width="45" height="45">
+      </a>
+      <span class="navbar-title">Secret Essence</span>
+    </div>
+
+    <div class="navbar-nav">
+      <a class="nav-link" (click)="agendamentos()">
+        <i class="bi bi-calendar-check me-1"></i> Agendamentos
+      </a>
+      <a class="nav-link" (click)="agendar()">
+        <i class="bi bi-plus-circle me-1"></i> Agendar Sala
+      </a>
+    </div>
+
+    <div class="navbar-search">
+      <div class="search-container">
+        <i class="bi bi-search search-icon"></i>
+        <input class="search-input" type="search" placeholder="Pesquisar..." aria-label="Search">
       </div>
     </div>
 
-    <div class="d-flex align-items-center position-relative">
-      <button class="btn btn-link p-0 text-white" (click)="Dropdown()">
-        <i class="bi bi-list fs-3" [class.active]="isDropdownOpen"></i>
+    <div class="navbar-actions">
+      <button class="action-btn">
+        <i class="bi bi-cart"></i>
       </button>
+      
+      <div class="dropdown-container">
+        <button class="action-btn" (click)="Dropdown()">
+          <i class="bi bi-person-circle" [class.active]="isDropdownOpen"></i>
+        </button>
 
-      <div class="dropdown-menu" [class.show]="isDropdownOpen" style="
-        right: 0;
-        top: 50px;
-        background-color: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      ">
-        <div class="d-flex flex-column gap-2 p-2">
-          <div class="d-flex align-items-center gap-2 text-white px-3 py-2 dropdown-item">
-            <i class="bi bi-person-circle"></i>
-            <span (click)="usuario()">Usuário</span>
+        <div class="dropdown-menu" [class.show]="isDropdownOpen">
+          <div class="dropdown-item" (click)="usuario()">
+            <i class="bi bi-person-circle me-2"></i>
+            <span>Meu Perfil</span>
           </div>
-
-          <div class="d-flex align-items-center gap-2 text-white px-3 py-2 dropdown-item">
-            <i class="bi bi-gear"></i>
-            <span >Configurações</span>
-          </div>
-
-          <div class="d-flex align-items-center gap-2 text-white px-3 py-2 dropdown-item">
-            <i class="bi bi-box-arrow-right"></i>
-            <span (click)="sair()">Sair</span>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" (click)="sair()">
+            <i class="bi bi-box-arrow-right me-2"></i>
+            <span>Sair</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
