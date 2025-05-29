@@ -1,6 +1,6 @@
 .navbar-glass {
     backdrop-filter: blur(12px);
-    background-color: rgba(185, 151, 124, 0.85);
+    background-color: #284b63;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.8rem 1rem;
     transition: all 0.3s ease;
@@ -11,22 +11,7 @@
     align-items: center;
     gap: 1rem;
   }
-
-  .navbar-brand img {
-    transition: transform 0.3s ease;
-  }
-
-  .navbar-brand:hover img {
-    transform: scale(1.05);
-  }
-
-  .navbar-title {
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
+  
   .navbar-nav {
     display: flex;
     gap: 1.5rem;
@@ -89,6 +74,7 @@
     height: 38px;
     width: 220px;
     transition: all 0.3s ease;
+    outline: none;
   }
 
   .search-input:focus {
@@ -128,7 +114,7 @@
     right: 0;
     top: 50px;
     min-width: 200px;
-    background-color: rgba(25, 30, 40, 0.95);
+    background-color: #346383;
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;

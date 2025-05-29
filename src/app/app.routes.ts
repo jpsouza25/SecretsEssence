@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/agendamentos/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
-import { AgendarComponent } from './components/agendar/agendar.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 
 export const routes: Routes = [
     {
@@ -24,8 +25,12 @@ export const routes: Routes = [
         component:HomeComponent,
       },
       {
-        path: 'agendar',
-        component: AgendarComponent,
+        path: 'carrinho',
+        component:CarrinhoComponent,
+      },
+      {
+        path: 'favoritos',
+        component:FavoritosComponent,
       },
       {
         path: 'usuario',

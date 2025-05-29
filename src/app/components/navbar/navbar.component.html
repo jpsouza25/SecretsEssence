@@ -1,38 +1,72 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-glass" style="height: 70px;"> <!-- Altura fixa definida -->
-  <div class="container-fluid h-100"> <!-- 100% da altura da navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-glass"> 
+  <div class="container-fluid h-100">
 
-    <!-- Logo aumentada com alinhamento vertical -->
-    <div class="navbar-brand-container h-100 d-flex align-items-center">
+    <div class="navbar-brand-container h-100 d-flex align-items-center" style="flex: 0 0 auto;">
       <a class="navbar-brand p-0" href="home">
-        <img src="logo.png" alt="Logo" style="height: 100px; width: auto; max-height: 100%;"> <!-- Altura relativa -->
+        <span class="brand-name">Secrets Essence</span>
       </a>
     </div>
 
-    <div class="navbar-nav">
-      <a class="nav-link" (click)="agendamentos()">
-        <i class="bi bi-calendar-check me-1"></i> Agendamentos
-      </a>
-      <a class="nav-link" (click)="agendar()">
-        <i class="bi bi-plus-circle me-1"></i> Agendar Sala
-      </a>
-    </div>
-
-    <!-- Barra de pesquisa -->
-    <div class="navbar-search">
-      <div class="search-container">
-        <i class="bi bi-search search-icon"></i>
-        <input class="search-input" type="search" placeholder="Pesquisar..." aria-label="Search" style="width: 280px; height: 38px;">
+     <div class="navbar-search flex-grow-1 d-flex justify-content-center">
+      <div class="search-container" style="width: 100%; max-width: 600px;">
+        <div class="position-relative w-100">
+          <i class="bi bi-search search-icon"></i>
+          <input #searchInput class="search-input" type="search" 
+                 placeholder="Pesquisar perfumes, fragrâncias..." 
+                 aria-label="Search" 
+                 style="width: 100%; height: 42px; padding-left: 45px;"
+                 (keyup.enter)="searchPerfumes(searchInput.value)"
+                 [formControl]="searchControl">
+          <button class="btn-search" 
+                  style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #888;"
+                  (click)="searchPerfumes(searchInput.value)">
+            <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+        
+        <!-- Resultados da pesquisa -->
+        <div class="search-results position-absolute w-100 bg-white shadow-lg rounded mt-1" 
+             *ngIf="searchResults.length > 0">
+          <div class="result-item p-3 border-bottom" 
+               *ngFor="let perfume of searchResults"
+               (click)="selectPerfume(perfume)">
+            <div class="d-flex align-items-center">
+              <img [src]="perfume.image" alt="Perfume" class="me-3" style="width: 40px; height: 40px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0">{{ perfume.name }}</h6>
+                <small class="text-muted">{{ perfume.brand }}</small>
+                <div class="d-flex align-items-center mt-1">
+                  <span class="text-success fw-bold">{{ perfume.price | currency:'BRL' }}</span>
+                  <span class="ms-2 badge bg-warning text-dark" *ngIf="perfume.discount">
+                    {{ perfume.discount }}% OFF
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center p-2 text-muted small" *ngIf="searchResults.length > 0">
+            Resultados fornecidos por Perfumero API
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="navbar-actions">
-      <button class="action-btn">
-        <i class="bi bi-cart"></i>
+    <div class="navbar-actions" style="flex: 0 0 auto;">
+      <button class="action-btn mx-2 position-relative" (click)="favoritos()">
+        <i class="bi bi-heart fs-5"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+          3
+        </span>
+      </button>
+      <button class="action-btn mx-2 position-relative" (click)="carrinho()">
+        <i class="bi bi-cart fs-5"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+          5
+        </span>
       </button>
       
-      <div class="dropdown-container">
+      <div class="dropdown-container ms-3">
         <button class="action-btn" (click)="Dropdown()">
-          <i class="bi bi-person-circle" [class.active]="isDropdownOpen"></i>
+          <i class="bi bi-person-circle fs-5" [class.active]="isDropdownOpen"></i>
         </button>
 
         <div class="dropdown-menu" [class.show]="isDropdownOpen">
