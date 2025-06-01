@@ -1,0 +1,153 @@
+/* Estilos principais com o novo esquema de cores */
+.profile-container {
+  padding-top: 80px;
+  min-height: 100vh;
+  background-color: rgba(15, 20, 30, 0.85);
+}
+
+.profile-topbar {
+  background-color: #1e2839; /* Tom mais escuro para combinar */
+  color: #ffffff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-profile-card {
+  border-radius: 0 0 12px 12px;
+  background-color: #1e2839;
+  color: #e0e0e0;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes para texto e elementos internos */
+.profile-name {
+  color: #ffffff;
+}
+
+.text-muted {
+  color: #a0a8c0 !important;
+}
+
+.profile-menu .nav-link {
+  color: #c0c8e0;
+}
+
+.profile-menu .nav-link.active {
+  background-color: rgba(13, 110, 253, 0.2);
+  color: #4dabf7;
+}
+
+.profile-menu .nav-link:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ajustes para cards internos */
+.card {
+  background-color: #2a3648;
+  border: 1px solid #3a4557;
+  color: #e0e0e0;
+}
+
+.address-card {
+  background-color: #2a3648;
+  border: 1px solid #3a4557;
+}
+
+.form-control, .form-select {
+  background-color: #2a3648;
+  border: 1px solid #3a4557;
+  color: #ffffff;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #2a3648;
+  color: #ffffff;
+  border-color: #4dabf7;
+}
+
+/* Botões */
+.btn-primary {
+  background-color: #1971c2;
+  border-color: #1971c2;
+}
+
+.btn-primary:hover {
+  background-color: #1864ab;
+  border-color: #1864ab;
+}
+
+.btn-outline-primary {
+  color: #4dabf7;
+  border-color: #4dabf7;
+}
+
+.btn-outline-primary:hover {
+  background-color: #1971c2;
+  border-color: #1971c2;
+}
+
+/* Badges */
+.badge.bg-success {
+  background-color: #2b8a3e !important;
+}
+
+.badge.bg-warning {
+  background-color: #e67700 !important;
+}
+
+.badge.bg-danger {
+  background-color: #c92a2a !important;
+}
+
+/* Tabelas */
+.table {
+  color: #e0e0e0;
+}
+
+.table thead th {
+  background-color: #1e2839;
+  border-bottom: 1px solid #3a4557;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #3a4557;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* List group */
+.list-group-item {
+  background-color: #2a3648;
+  border: 1px solid #3a4557;
+  color: #e0e0e0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-container {
+    padding-top: 70px;
+  }
+  
+  .profile-content-scrollable {
+    max-height: 60vh;
+  }
+}
+.profile-content-scrollable {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px); /* Ajuste conforme necessário */
+  scrollbar-width: thin; /* Para navegadores modernos */
+  scrollbar-color: #4dabf7 #2a3648; /* Cor do scroll */
+  
+  &::-webkit-scrollbar-track {
+    background: #2a3648;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #4dabf7;
+    border-radius: 4px;
+  }
+}

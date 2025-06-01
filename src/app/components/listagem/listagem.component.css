@@ -1,0 +1,26 @@
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.bi {
+  margin-right: 0.25rem;
+}
+
+.d-flex.gap-2 {
+  gap: 0.5rem;
+}
+
+.bi {
+  font-size: 1rem;
+}
+
+.btn-warning:hover {
+  background-color: #ffca2c;
+  border-color: #ffc720;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}

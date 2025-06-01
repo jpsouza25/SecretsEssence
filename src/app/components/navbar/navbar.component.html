@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-glass"> 
+<nav class="navbar fixed-top navbar-expand-lg navbar-glass" style="height: 70px;"> 
   <div class="container-fluid h-100">
 
     <div class="navbar-brand-container h-100 d-flex align-items-center" style="flex: 0 0 auto;">
@@ -7,77 +7,55 @@
       </a>
     </div>
 
-     <div class="navbar-search flex-grow-1 d-flex justify-content-center">
+     <div class="action-btn mx-2 position-relative d-flex align-items-center justify-content-center">
+      <a class="nav-link" (click)="listagem()">
+       <i class="bi bi-card-list"></i> Listagem
+      </a>
+    </div>
+
+    <div class="navbar-search flex-grow-1 d-flex justify-content-center">
       <div class="search-container" style="width: 100%; max-width: 600px;">
         <div class="position-relative w-100">
           <i class="bi bi-search search-icon"></i>
-          <input #searchInput class="search-input" type="search" 
-                 placeholder="Pesquisar perfumes, fragrâncias..." 
-                 aria-label="Search" 
-                 style="width: 100%; height: 42px; padding-left: 45px;"
-                 (keyup.enter)="searchPerfumes(searchInput.value)"
-                 [formControl]="searchControl">
-          <button class="btn-search" 
-                  style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #888;"
-                  (click)="searchPerfumes(searchInput.value)">
+          <input class="search-input" type="search" placeholder="Pesquisar perfumes, fragrâncias..." aria-label="Search" style="width: 100%; height: 42px; padding-left: 45px;">
+          <button class="btn-search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #888;">
             <i class="bi bi-arrow-right"></i>
           </button>
         </div>
-        
-        <!-- Resultados da pesquisa -->
-        <div class="search-results position-absolute w-100 bg-white shadow-lg rounded mt-1" 
-             *ngIf="searchResults.length > 0">
-          <div class="result-item p-3 border-bottom" 
-               *ngFor="let perfume of searchResults"
-               (click)="selectPerfume(perfume)">
-            <div class="d-flex align-items-center">
-              <img [src]="perfume.image" alt="Perfume" class="me-3" style="width: 40px; height: 40px; object-fit: cover;">
-              <div>
-                <h6 class="mb-0">{{ perfume.name }}</h6>
-                <small class="text-muted">{{ perfume.brand }}</small>
-                <div class="d-flex align-items-center mt-1">
-                  <span class="text-success fw-bold">{{ perfume.price | currency:'BRL' }}</span>
-                  <span class="ms-2 badge bg-warning text-dark" *ngIf="perfume.discount">
-                    {{ perfume.discount }}% OFF
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center p-2 text-muted small" *ngIf="searchResults.length > 0">
-            Resultados fornecidos por Perfumero API
-          </div>
-        </div>
       </div>
     </div>
-    <div class="navbar-actions" style="flex: 0 0 auto;">
-      <button class="action-btn mx-2 position-relative" (click)="favoritos()">
-        <i class="bi bi-heart fs-5"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-          3
-        </span>
-      </button>
-      <button class="action-btn mx-2 position-relative" (click)="carrinho()">
-        <i class="bi bi-cart fs-5"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-          5
-        </span>
-      </button>
-      
-      <div class="dropdown-container ms-3">
-        <button class="action-btn" (click)="Dropdown()">
-          <i class="bi bi-person-circle fs-5" [class.active]="isDropdownOpen"></i>
-        </button>
 
-        <div class="dropdown-menu" [class.show]="isDropdownOpen">
-          <div class="dropdown-item" (click)="usuario()">
-            <i class="bi bi-person-circle me-2"></i>
-            <span>Meu Perfil</span>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="dropdown-item" (click)="sair()">
-            <i class="bi bi-box-arrow-right me-2"></i>
-            <span>Sair</span>
+    <div class="navbar-actions d-flex align-items-center" style="flex: 0 0 auto;">
+      <div class="d-flex align-items-center">
+        <button class="action-btn mx-2 position-relative d-flex align-items-center justify-content-center" (click)="favoritos()" style="width: 40px; height: 40px;">
+          <i class="bi bi-heart fs-5"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+            3
+          </span>
+        </button>
+        
+        <button class="action-btn mx-2 position-relative d-flex align-items-center justify-content-center" (click)="carrinho()" style="width: 40px; height: 40px;">
+          <i class="bi bi-cart fs-5"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+            5
+          </span>
+        </button>
+        
+        <div class="dropdown-container ms-2">
+          <button class="action-btn d-flex align-items-center justify-content-center" (click)="Dropdown()" style="width: 40px; height: 40px;">
+            <i class="bi bi-person-circle fs-5" [class.active]="isDropdownOpen"></i>
+          </button>
+
+          <div class="dropdown-menu" [class.show]="isDropdownOpen">
+            <div class="dropdown-item" (click)="usuario()">
+              <i class="bi bi-person-circle me-2"></i>
+              <span>Meu Perfil</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" (click)="sair()">
+              <i class="bi bi-box-arrow-right me-2"></i>
+              <span>Sair</span>
+            </div>
           </div>
         </div>
       </div>

@@ -1,138 +1,70 @@
-.navbar-glass {
-    backdrop-filter: blur(12px);
-    background-color: #284b63;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.8rem 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .navbar-brand-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+ .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #e6d3a7, #d4af37, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding-right: 10px;
   }
   
-  .navbar-nav {
-    display: flex;
-    gap: 1.5rem;
-    margin-left: 2rem;
-  }
-
-  .nav-link {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    position: relative;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-link:hover {
-    color: white !important;
-    transform: translateY(-2px);
-  }
-
-  .nav-link::after {
-    content: '';
+  .brand-name::after {
+    content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease;
+    right: 0;
+    bottom: 5px;
+    height: 70%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #d4af37, transparent);
+  }.navbar-glass {
+    backdrop-filter: blur(12px);
+    background-color: rgba(15, 20, 30, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .navbar-search {
-    margin-left: auto;
-    margin-right: 1.5rem;
-  }
-
-  .search-container {
-    position: relative;
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .search-input {
-    padding-left: 2.5rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    border-radius: 20px;
-    height: 38px;
-    width: 220px;
-    transition: all 0.3s ease;
-    outline: none;
-  }
-
-  .search-input:focus {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
-    color: white;
-    width: 250px;
-  }
-
-  .navbar-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .action-btn {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.2rem;
-    background: none;
+   .action-btn {
+    color: rgba(255, 255, 255, 0.85);
+    background: transparent;
     border: none;
     padding: 0.5rem;
     transition: all 0.3s ease;
+    font-size: 1.25rem;
   }
-
+  
   .action-btn:hover {
     color: white;
     transform: scale(1.1);
   }
-
-  .dropdown-container {
-    position: relative;
-  }
-
+  
   .dropdown-menu {
     position: absolute;
     right: 0;
     top: 50px;
     min-width: 200px;
-    background-color: #346383;
+    background-color: rgba(25, 30, 40, 0.95);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    padding: 0.5rem 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
     z-index: 1000;
   }
-
+  
   .dropdown-menu.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-
+  
   .dropdown-item {
     color: rgba(255, 255, 255, 0.9);
     padding: 0.5rem 1.5rem;
@@ -141,34 +73,75 @@
     cursor: pointer;
     transition: all 0.2s ease;
   }
-
+  
   .dropdown-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    color: white;
     padding-left: 1.7rem;
   }
-
+  
   .dropdown-divider {
     height: 1px;
     background-color: rgba(255, 255, 255, 0.1);
     margin: 0.5rem 0;
   }
-
+  
+  .search-container {
+    position: relative;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+  }
+  
+  .search-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+    outline: none;
+  }
+  
   @media (max-width: 992px) {
-    .navbar-nav {
-      margin-left: 0;
-      gap: 1rem;
-    }
-    
     .navbar-search {
-      margin-right: 0.5rem;
+      order: 3;
+      width: 100%;
+      margin-top: 10px;
     }
     
-    .search-input {
-      width: 180px;
+    .container-fluid {
+      flex-wrap: wrap;
     }
     
-    .search-input:focus {
-      width: 200px;
+    .navbar-brand-container {
+      flex: 0 0 auto;
+      margin-right: auto;
+    }
+    
+    .navbar-actions {
+      margin-left: auto;
+    }
+    
+    .brand-name {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .brand-name {
+      font-size: 1.3rem;
+      letter-spacing: 1px;
     }
   }

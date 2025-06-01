@@ -1,8 +1,4 @@
-
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
-import { UsuarioInfo } from '../interfaces/usuarioInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +21,20 @@ export class CadastroService {
     const users = localStorage.getItem(this.storageKey);
     return users ? JSON.parse(users) : [];
   }
+  getAllUsers(): any[] {
+  const users = localStorage.getItem(this.storageKey);
+  return users ? JSON.parse(users) : [];
+}
+excluirUsuario(username: string): boolean {
+  try {
+    const usuariosAtuais = this.getUsers();
+    const usuariosAtualizados = usuariosAtuais.filter(u => u.username !== username);
+    
+    localStorage.setItem(this.storageKey, JSON.stringify(usuariosAtualizados));
+    return true;
+  } catch (error) {
+    console.error('Erro ao excluir usuário:', error);
+    return false;
+  }
+}
 }
