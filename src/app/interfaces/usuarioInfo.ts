@@ -1,7 +1,8 @@
-export interface UsuarioInfo{
-    firstName:string,
-    birthDate:Date,
-    username:string,
-    password:string,
-    email:string
+export interface Usuario{
+  username: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  birthDate?: string;
 }

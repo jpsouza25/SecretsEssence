@@ -1,26 +1,22 @@
 <app-navbar></app-navbar>
 
-  <div class="container-fluid py-4">
-    <div class="row justify-content-center">
-      <div class="col-xl-10">
-        <div class="profile-topbar p-3 rounded-top">
-          <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-            <div class="d-flex align-items-center mb-3 mb-md-0">
-              
-              <div>
-                <h4 class="profile-name mb-0">Maria Silva</h4>
-                <p class="text-muted mb-0">mariasilvamail.com</p>
-              </div>
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
+      <div class="profile-topbar p-3 rounded-top">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+          <div class="d-flex align-items-center mb-3 mb-md-0">
+            <div>
+              <h4 class="profile-name mb-0">Seja bem vindo,{{ usuario?.firstName }}</h4>
+              <p class="text-muted mb-0">{{ usuario?.email }}</p>
             </div>
-            
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
             <div class="profile-stats d-flex gap-4 me-md-4">
               <div class="text-center">
-                <div class="fw-bold">24</div>
+                <div class="fw-bold">3</div>
                 <div class="text-muted small">Pedidos</div>
-              </div>
-              <div class="text-center">
-                <div class="fw-bold">12</div>
-                <div class="text-muted small">Favoritos</div>
               </div>
               <div class="text-center">
                 <div class="fw-bold">5</div>
@@ -28,302 +24,230 @@
               </div>
             </div>
           </div>
-          
-          <ul class="nav profile-menu flex-nowrap overflow-auto mt-3">
-            <li class="nav-item">
-              <a class="nav-link active" (click)="setActiveTab('dados')">
-                <i class="bi bi-person me-1"></i> Meus Dados
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="setActiveTab('pedidos')">
-                <i class="bi bi-bag me-1"></i> Pedidos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="setActiveTab('enderecos')">
-                <i class="bi bi-geo-alt me-1"></i> Endereços
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="setActiveTab('favoritos')">
-                <i class="bi bi-heart me-1"></i> Favoritos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="setActiveTab('seguranca')">
-                <i class="bi bi-shield-lock me-1"></i> Segurança
-              </a>
-            </li>
-          </ul>
         </div>
-        
-        <!-- Card principal -->
-        <div class="main-profile-card card shadow-lg">
-          <div class="card-body p-0">
-            <!-- Conteúdo principal com scroll -->
-            <div class="profile-content-scrollable">
-              <div class="p-4">
-                
-                <!-- Aba de Dados Pessoais -->
-                <div *ngIf="activeTab === 'dados'" class="tab-content">
-                  <h4 class="mb-4">Meus Dados Pessoais</h4>
-                  
-                  <form>
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="nome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="nome" value="Maria Silva">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" class="form-control" id="cpf" value="123.456.789-00">
-                      </div>
+
+        <ul class="nav profile-menu flex-nowrap overflow-auto mt-3">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'dados'" (click)="setActiveTab('dados')">
+              <i class="bi bi-person me-1"></i> Meus Dados
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'pedidos'" (click)="setActiveTab('pedidos')">
+              <i class="bi bi-bag me-1"></i> Pedidos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'enderecos'" (click)="setActiveTab('enderecos')">
+              <i class="bi bi-geo-alt me-1"></i> Endereços
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'seguranca'" (click)="setActiveTab('seguranca')">
+              <i class="bi bi-shield-lock me-1"></i> Segurança
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="main-profile-card card shadow-lg">
+        <div class="card-body p-0">
+          <div class="profile-content-scrollable">
+            <div class="p-4">
+              <!-- Aba de Dados Pessoais -->
+              <div *ngIf="activeTab === 'dados' && usuario" class="tab-content">
+                <h4 class="mb-4">Meus Dados Pessoais</h4>
+
+                <form>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Nome Completo</label>
+                      <input type="text" class="form-control"
+                        [value]="usuario.firstName + ' ' + (usuario.lastName || '')" readonly>
                     </div>
-                    
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" value="mariasilva@email.com">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="telefone" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="telefone" value="(11) 98765-4321">
-                      </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Nome de Usuário</label>
+                      <input type="text" class="form-control" [value]="usuario.username" readonly>
                     </div>
-                    
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="nascimento" class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="nascimento" value="1990-05-15">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="genero" class="form-label">Gênero</label>
-                        <select class="form-select" id="genero">
-                          <option selected>Feminino</option>
-                          <option>Masculino</option>
-                          <option>Outro</option>
-                          <option>Prefiro não informar</option>
-                        </select>
-                      </div>
-                    </div>
-                    
-                    <div class="d-flex justify-content-end">
-                      <button type="button" class="btn btn-outline-secondary me-2">Cancelar</button>
-                      <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                    </div>
-                  </form>
-                </div>
-                
-                <!-- Aba de Pedidos -->
-                <div *ngIf="activeTab === 'pedidos'" class="tab-content">
-                  <h4 class="mb-4">Meus Pedidos</h4>
-                  
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Nº Pedido</th>
-                          <th>Data</th>
-                          <th>Itens</th>
-                          <th>Valor</th>
-                          <th>Status</th>
-                          <th>Ações</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>#12345</td>
-                          <td>15/05/2023</td>
-                          <td>2 itens</td>
-                          <td>R$ 249,90</td>
-                          <td><span class="badge bg-success">Entregue</span></td>
-                          <td>
-                            <button class="btn btn-sm btn-outline-primary">Detalhes</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#12344</td>
-                          <td>10/05/2023</td>
-                          <td>1 item</td>
-                          <td>R$ 129,90</td>
-                          <td><span class="badge bg-warning text-dark">Em transporte</span></td>
-                          <td>
-                            <button class="btn btn-sm btn-outline-primary">Detalhes</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#12340</td>
-                          <td>01/05/2023</td>
-                          <td>3 itens</td>
-                          <td>R$ 389,70</td>
-                          <td><span class="badge bg-danger">Cancelado</span></td>
-                          <td>
-                            <button class="btn btn-sm btn-outline-primary">Detalhes</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
                   </div>
-                </div>
-                
-                <!-- Aba de Endereços -->
-                <div *ngIf="activeTab === 'enderecos'" class="tab-content">
-                  <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h4 class="mb-0">Meus Endereços</h4>
-                    <button class="btn btn-primary" (click)="openAddressModal()">
-                      <i class="bi bi-plus"></i> Adicionar Endereço
-                    </button>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label">E-mail</label>
+                      <input type="email" class="form-control" [value]="usuario.email" readonly>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Data de Nascimento</label>
+                      <input type="text" class="form-control" [value]="formatDate(usuario.birthDate)" readonly>
+                    </div>
                   </div>
-                  
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <div class="card address-card">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between">
-                            <h5 class="card-title">Casa</h5>
-                            <div class="address-actions">
-                              <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></button>
-                              <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                            </div>
-                          </div>
-                          <p class="card-text">
-                            Rua das Flores, 123<br>
-                            Apt 101, Bloco B<br>
-                            Jardim Primavera<br>
-                            São Paulo - SP<br>
-                            CEP: 01234-567
-                          </p>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="defaultAddress" id="defaultAddress1" checked>
-                            <label class="form-check-label" for="defaultAddress1">
-                              Endereço principal
-                            </label>
+                </form>
+              </div>
+
+              <!-- Aba de Pedidos -->
+              <div *ngIf="activeTab === 'pedidos'" class="tab-content">
+                <h4 class="mb-4">Meus Pedidos</h4>
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nº Pedido</th>
+                        <th>Data</th>
+                        <th>Itens</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#12345</td>
+                        <td>15/05/2023</td>
+                        <td>2 itens</td>
+                        <td>R$ 249,90</td>
+                        <td><span class="badge bg-success">Entregue</span></td>
+                        <td>
+                          <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#12344</td>
+                        <td>10/05/2023</td>
+                        <td>1 item</td>
+                        <td>R$ 129,90</td>
+                        <td><span class="badge bg-warning text-dark">Em transporte</span></td>
+                        <td>
+                          <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#12340</td>
+                        <td>01/05/2023</td>
+                        <td>3 itens</td>
+                        <td>R$ 389,70</td>
+                        <td><span class="badge bg-danger">Cancelado</span></td>
+                        <td>
+                          <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Aba de Endereços -->
+              <div *ngIf="activeTab === 'enderecos'" class="tab-content">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <h4 class="mb-0">Meus Endereços</h4>
+                  <button class="btn btn-primary">
+                    <i class="bi bi-plus"></i> Adicionar Endereço
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="card address-card">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                          <h5 class="card-title">Casa</h5>
+                          <div class="address-actions">
+                            <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                      <div class="card address-card">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between">
-                            <h5 class="card-title">Trabalho</h5>
-                            <div class="address-actions">
-                              <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></button>
-                              <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                            </div>
-                          </div>
-                          <p class="card-text">
-                            Av. Paulista, 1000<br>
-                            10º andar<br>
-                            Bela Vista<br>
-                            São Paulo - SP<br>
-                            CEP: 01310-100
-                          </p>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="defaultAddress" id="defaultAddress2">
-                            <label class="form-check-label" for="defaultAddress2">
-                              Endereço principal
-                            </label>
-                          </div>
+                        <p class="card-text">
+                          Rua das Flores, 123<br>
+                          Apt 101, Bloco B<br>
+                          Jardim Primavera<br>
+                          São Paulo - SP<br>
+                          CEP: 01234-567
+                        </p>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="defaultAddress" id="defaultAddress1"
+                            checked>
+                          <label class="form-check-label" for="defaultAddress1">
+                            Endereço principal
+                          </label>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                <!-- Aba de Favoritos -->
-                <div *ngIf="activeTab === 'favoritos'" class="tab-content">
-                  <h4 class="mb-4">Meus Favoritos</h4>
-                  
-                  <div class="row">
-                    <div class="col-md-6 col-lg-4 mb-4">
-                      <div class="card product-card h-100">
-                        <div class="position-relative">
-                          <img src="https://via.placeholder.com/300x300" class="card-img-top" alt="Produto">
-                          <button class="btn-favorite">
-                            <i class="bi bi-heart-fill"></i>
-                          </button>
-                        </div>
-                        <div class="card-body">
-                          <h5 class="card-title">Perfume Essencial</h5>
-                          <p class="card-text text-muted">Secrets Essence</p>
-                          <div class="d-flex justify-content-between align-items-center">
-                            <span class="price">R$ 249,90</span>
-                            <button class="btn btn-sm btn-outline-primary">Adicionar ao carrinho</button>
+
+                  <div class="col-md-6 mb-3">
+                    <div class="card address-card">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                          <h5 class="card-title">Trabalho</h5>
+                          <div class="address-actions">
+                            <button class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-4 mb-4">
-                      <div class="card product-card h-100">
-                        <div class="position-relative">
-                          <img src="https://via.placeholder.com/300x300" class="card-img-top" alt="Produto">
-                          <button class="btn-favorite">
-                            <i class="bi bi-heart-fill"></i>
-                          </button>
-                        </div>
-                        <div class="card-body">
-                          <h5 class="card-title">Creme Hidratante</h5>
-                          <p class="card-text text-muted">Secrets Care</p>
-                          <div class="d-flex justify-content-between align-items-center">
-                            <span class="price">R$ 189,90</span>
-                            <button class="btn btn-sm btn-outline-primary">Adicionar ao carrinho</button>
-                          </div>
+                        <p class="card-text">
+                          Av. Paulista, 1000<br>
+                          10º andar<br>
+                          Bela Vista<br>
+                          São Paulo - SP<br>
+                          CEP: 01310-100
+                        </p>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="defaultAddress" id="defaultAddress2">
+                          <label class="form-check-label" for="defaultAddress2">
+                            Endereço principal
+                          </label>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                
-                <!-- Aba de Segurança -->
-                <div *ngIf="activeTab === 'seguranca'" class="tab-content">
-                  <h4 class="mb-4">Segurança da Conta</h4>
-                  
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <h5 class="card-title">Alterar Senha</h5>
-                      <form>
-                        <div class="mb-3">
-                          <label for="currentPassword" class="form-label">Senha Atual</label>
-                          <input type="password" class="form-control" id="currentPassword">
-                        </div>
-                        <div class="mb-3">
-                          <label for="newPassword" class="form-label">Nova Senha</label>
-                          <input type="password" class="form-control" id="newPassword">
-                          <div class="form-text">A senha deve ter pelo menos 8 caracteres.</div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="confirmPassword" class="form-label">Confirmar Nova Senha</label>
-                          <input type="password" class="form-control" id="confirmPassword">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Alterar Senha</button>
-                      </form>
-                    </div>
+              </div>
+
+              <!-- Aba de Segurança -->
+              <div *ngIf="activeTab === 'seguranca'" class="tab-content">
+                <h4 class="mb-4">Segurança da Conta</h4>
+
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <h5 class="card-title">Alterar Senha</h5>
+                    <form>
+                      <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Senha Atual</label>
+                        <input type="password" class="form-control" id="currentPassword">
+                      </div>
+                      <div class="mb-3">
+                        <label for="newPassword" class="form-label">Nova Senha</label>
+                        <input type="password" class="form-control" id="newPassword">
+                        <div class="form-text">A senha deve ter pelo menos 8 caracteres.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmar Nova Senha</label>
+                        <input type="password" class="form-control" id="confirmPassword">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Alterar Senha</button>
+                    </form>
                   </div>
-                  
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Sessões Ativas</h5>
-                      <p class="text-muted">Aqui estão os dispositivos que estão atualmente logados na sua conta.</p>
-                      
-                      <div class="list-group">
-                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                          <div>
-                            <h6 class="mb-1">Chrome - Windows 10</h6>
-                            <small class="text-muted">São Paulo, Brasil · Ativo agora</small>
-                          </div>
-                          <button class="btn btn-sm btn-outline-danger">Sair</button>
+                </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Sessões Ativas</h5>
+                    <p class="text-muted">Aqui estão os dispositivos que estão atualmente logados na sua conta.</p>
+
+                    <div class="list-group">
+                      <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 class="mb-1">Chrome - Windows 10</h6>
+                          <small class="text-muted">São Paulo, Brasil · Ativo agora</small>
                         </div>
-                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                          <div>
-                            <h6 class="mb-1">Safari - iPhone</h6>
-                            <small class="text-muted">Rio de Janeiro, Brasil · 2 horas atrás</small>
-                          </div>
-                          <button class="btn btn-sm btn-outline-danger">Sair</button>
+                        <button class="btn btn-sm btn-outline-danger">Sair</button>
+                      </div>
+                      <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 class="mb-1">Safari - iPhone</h6>
+                          <small class="text-muted">Rio de Janeiro, Brasil · 2 horas atrás</small>
                         </div>
+                        <button class="btn btn-sm btn-outline-danger">Sair</button>
                       </div>
                     </div>
                   </div>
@@ -335,3 +259,4 @@
       </div>
     </div>
   </div>
+</div>

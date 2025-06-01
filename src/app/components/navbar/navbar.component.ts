@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent {
   isDropdownOpen = false;
 
   constructor(
-
+    private loginService: LoginService,
     private router: Router
   ) { }
 
@@ -32,6 +33,7 @@ export class NavbarComponent {
     this.router.navigate(['/listagem']);
   }
   sair() {
+    this.loginService.sair();
     this.router.navigate(['/login']);
   }
   favoritos() {

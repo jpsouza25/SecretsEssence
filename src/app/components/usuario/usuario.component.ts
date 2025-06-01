@@ -1,58 +1,44 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
-  imports: [NavbarComponent,CommonModule],
+  standalone: true,
+  imports: [NavbarComponent, CommonModule],
   templateUrl: './usuario.component.html',
-  styleUrl: './usuario.component.css'
+  styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent {
-
   activeTab = 'dados';
-  isDropdownOpen = false;
-  
-  favoriteItems = [
-    { id: 1, name: 'Perfume Florais do Campo', brand: 'Essence Paris', price: 129.90 },
-    { id: 2, name: 'Fragrância Noturna', brand: 'Secrets', price: 159.90 },
-    { id: 3, name: 'Água de Colônia Fresh', brand: 'Nature', price: 89.90 }
-  ];
+  usuario: any = null;
+  loading = false;
 
-  setActiveTab(tab: string) {
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.carregarUsuario();
+  }
+
+  carregarUsuario(): void {
+    this.usuario = this.loginService.obterUsuarioAtual(); // Corrigido
+    if (!this.usuario) {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  setActiveTab(tab: string): void {
     this.activeTab = tab;
   }
 
-  Dropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
-  favoritos() {
-    this.setActiveTab('favoritos');
-    // Navegar para favoritos
-  }
-
-  carrinho() {
-    // Navegar para carrinho
-  }
-
-  usuario() {
-    // Já está na página de perfil
-  }
-
-  sair() {
-    // Lógica para logout
-  }
-
-  removeFavorite(id: number) {
-    this.favoriteItems = this.favoriteItems.filter(item => item.id !== id);
-  }
-
-  openAddressModal() {
-    // Lógica para abrir modal de endereço
-  }
-
-  changeAvatar() {
-    // Lógica para alterar avatar
+  formatDate(dateString: string): string {
+    if (!dateString) return 'Não informada';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR');
   }
 }
