@@ -40,7 +40,6 @@ export class CadastroComponent {
 
       const usuarioInfo = {
         ...this.cadastroForm.value,
-        image: 'https://i.pravatar.cc/300', // Imagem padrão
       };
 
       const sucessoCadastro = this.cadastroService.registrar(usuarioInfo);

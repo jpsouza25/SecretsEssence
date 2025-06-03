@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from '../interfaces/usuarioInfo'; // Assumindo que você tem essa interface
+import { Usuario } from '../interfaces/usuarioInfo';
+import { Listagem } from '../interfaces/listagem';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,9 @@ import { Usuario } from '../interfaces/usuarioInfo'; // Assumindo que você tem 
 export class CadastroService {
   private storageKey = 'usuarios';
 
-  /**
-   * Registra um novo usuário
-   */
   registrar(usuario: Usuario): { success: boolean, message: string } {
     try {
       const usuarios = this.getUsuarios();
-
-      // Verifica se usuário já existe (case insensitive e trim)
       const usuarioExistente = usuarios.find(u => 
         u.username.toLowerCase().trim() === usuario.username.toLowerCase().trim()
       );
@@ -25,7 +21,7 @@ export class CadastroService {
       usuarios.push({
         ...usuario,
         username: usuario.username.trim(),
-        password: usuario.password.trim() // ATENÇÃO: Em produção, nunca armazene senhas em texto puro
+        password: usuario.password.trim()
       });
 
       localStorage.setItem(this.storageKey, JSON.stringify(usuarios));
@@ -36,9 +32,6 @@ export class CadastroService {
     }
   }
 
-  /**
-   * Obtém todos os usuários cadastrados
-   */
   getAllUsers(): Usuario[] {
     try {
       const usuarios = localStorage.getItem(this.storageKey);
@@ -49,9 +42,10 @@ export class CadastroService {
     }
   }
 
-  /**
-   * Remove um usuário pelo username
-   */
+  private getUsuarios(): Usuario[] {
+    return this.getAllUsers();
+  }
+
   excluirUsuario(username: string): { success: boolean, message: string } {
     try {
       const usuariosAtuais = this.getAllUsers();
@@ -71,10 +65,42 @@ export class CadastroService {
     }
   }
 
-  /**
-   * Método privado para obter usuários (base para outros métodos)
-   */
-  private getUsuarios(): Usuario[] {
-    return this.getAllUsers();
+  atualizarUsuario(usernameOriginal: string, usuarioAtualizado:Listagem): { success: boolean, message: string } {
+  try {
+    const usuarios = this.getAllUsers();
+    const index = usuarios.findIndex(u => 
+      u.username.toLowerCase().trim() === usernameOriginal.toLowerCase().trim()
+    );
+
+    if (index === -1) {
+      return { success: false, message: 'Usuário não encontrado' };
+    }
+    const usernameExistente = usuarios.some((u, i) => 
+      i !== index && 
+      u.username.toLowerCase().trim() === usuarioAtualizado.username.toLowerCase().trim()
+    );
+
+    if (usernameExistente) {
+      return { success: false, message: 'Novo nome de usuário já está em uso' };
+    }
+
+    usuarios[index] = {
+      ...usuarios[index],
+      ...usuarioAtualizado,
+      username: usuarioAtualizado.username.trim(),
+    };
+
+    localStorage.setItem(this.storageKey, JSON.stringify(usuarios));
+    return { success: true, message: 'Usuário atualizado com sucesso!' };
+  } catch (error) {
+    console.error('Erro ao atualizar usuário:', error);
+    return { success: false, message: 'Erro ao atualizar usuário' };
   }
+}
+
+getUserByUsername(username: string): Usuario | undefined {
+  return this.getAllUsers().find(u => 
+    u.username.toLowerCase().trim() === username.toLowerCase().trim()
+  );
+}
 }

@@ -1,18 +1,17 @@
 <div class="container-fluid d-flex align-items-center justify-content-center" style="position: relative; z-index: 10; min-height: 100vh;">
   <div class="card p-4" style="width: 700px; backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.1); border-radius: 20px;">
     <div class="row no-gutters">
-      <!-- Coluna esquerda - Bem-vindo -->
+
       <div class="col-md-6 d-flex flex-column align-items-center justify-content-center text-center p-4" style="border-right: 1px solid rgba(255, 255, 255, 0.2);">
         <h1 class="text-white mb-4">Bem-vindo</h1>
         <h2 class="text-light">Novo Login</h2>
         <button class="btn btn-light mt-4 px-4 py-2" style="border-radius: 20px;" (click)="navegarParaCadastro()">Criar Conta</button>
       </div>
 
-      <!-- Coluna direita - Formulário de login -->
       <div class="col-md-6 d-flex flex-column justify-content-center p-4">
         <h1 class="text-white text-center mb-4">Faça Login</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <!-- Campo Usuário -->
+
           <div class="form-group mb-3">
             <label class="text-light" for="username">Usuário</label>
             <input type="text" class="form-control" id="username" 
@@ -23,7 +22,7 @@
             </div>
           </div>
 
-          <!-- Campo Senha -->
+    
           <div class="form-group mb-3">
             <label class="text-light" for="password">Senha</label>
             <input type="password" class="form-control" id="password" 
@@ -35,12 +34,11 @@
             </div>
           </div>
 
-          <!-- Mensagem de erro -->
-          <div *ngIf="mensagemErro" class="alert alert-danger mb-3">
+       <div *ngIf="mensagemErro" class="alert alert-danger mb-3">
             {{ mensagemErro }}
           </div>
 
-          <!-- Lembrar senha e esqueci senha -->
+
           <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="form-check">
               <input type="checkbox" class="form-check-input" id="remember">
@@ -49,7 +47,6 @@
             <a href="#" class="text-light">Esqueceu a senha?</a>
           </div>
 
-          <!-- Botão de login -->
           <button type="submit" class="btn btn-dark btn-block mt-3 px-4 py-2" 
                   [disabled]="loginForm.invalid || carregando" style="border-radius: 20px;">
             <span *ngIf="!carregando">Entrar</span>

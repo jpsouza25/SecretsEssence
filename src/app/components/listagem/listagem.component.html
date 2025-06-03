@@ -38,7 +38,7 @@
     <td class="text-nowrap">
       <div class="d-flex gap-2">
         <button class="btn btn-sm btn-warning" 
-                (click)="editarUsuario(usuario.username)"
+                (click)="abrirModalEdicao(usuario)"
                 title="Editar usuário">
           <i class="bi bi-pencil-square"></i>
         </button>
@@ -56,6 +56,56 @@
 
     <div class="mt-3">
       <p class="text-muted">Total de usuários: {{ usuarios.length }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- edição -->
+<div *ngIf="mostrarModal" class="modal-backdrop fade show" style="display: block; background-color: rgba(0, 0, 0, 0.7)"></div>
+<div *ngIf="mostrarModal" class="modal fade show d-block" style="z-index: 1050;">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="background-color: #2a3648; border: 1px solid #3a4557; border-radius: 15px;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-white">Editar Usuário</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="fecharModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-light">Nome</label>
+              <input type="text" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.firstName" name="firstName">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label text-light">Usuário</label>
+              <input type="text" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.username" name="username">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-light">E-mail</label>
+              <input type="email" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.email" name="email">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label text-light">Data Nasc.</label>
+              <input type="date" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.birthDate" name="birthDate">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-outline-light px-4" (click)="fecharModal()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary px-4" (click)="salvarEdicao()">
+          <span *ngIf="!carregando">Salvar</span>
+          <span *ngIf="carregando" class="spinner-border spinner-border-sm"></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -80,8 +80,12 @@
                       <label class="form-label">Data de Nascimento</label>
                       <input type="text" class="form-control" [value]="formatDate(usuario.birthDate)" readonly>
                     </div>
+
                   </div>
                 </form>
+                <button type="button" class="btn btn-primary px-4"(click)="abrirModalEdicao(usuario)">
+                 Editar
+                </button>
               </div>
 
               <!-- Aba de Pedidos -->
@@ -228,34 +232,59 @@
                     </form>
                   </div>
                 </div>
-
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Sessões Ativas</h5>
-                    <p class="text-muted">Aqui estão os dispositivos que estão atualmente logados na sua conta.</p>
-
-                    <div class="list-group">
-                      <div class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                          <h6 class="mb-1">Chrome - Windows 10</h6>
-                          <small class="text-muted">São Paulo, Brasil · Ativo agora</small>
-                        </div>
-                        <button class="btn btn-sm btn-outline-danger">Sair</button>
-                      </div>
-                      <div class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                          <h6 class="mb-1">Safari - iPhone</h6>
-                          <small class="text-muted">Rio de Janeiro, Brasil · 2 horas atrás</small>
-                        </div>
-                        <button class="btn btn-sm btn-outline-danger">Sair</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mostrarModal" class="modal-backdrop fade show" style="display: block; background-color: rgba(0, 0, 0, 0.7)"></div>
+<div *ngIf="mostrarModal" class="modal fade show d-block" style="z-index: 1050;">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="background-color: #2a3648; border: 1px solid #3a4557; border-radius: 15px;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-white">Editar Usuário</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="fecharModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-light">Nome</label>
+              <input type="text" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.firstName" name="firstName">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label text-light">Usuário</label>
+              <input type="text" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.username" name="username">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-light">E-mail</label>
+              <input type="email" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.email" name="email">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label text-light">Data Nasc.</label>
+              <input type="date" class="form-control bg-dark text-light border-secondary" 
+                     [(ngModel)]="editForm.birthDate" name="birthDate">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-outline-light px-4" (click)="fecharModal()">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary px-4" (click)="salvarEdicao()">
+         Salvar
+
+        </button>
       </div>
     </div>
   </div>
