@@ -1,0 +1,21 @@
+<!-- <div class="card card-livro h-100">
+  <div *ngIf="livro.precoPromocional" class="badge bg-danger position-absolute" style="top: 10px; right: 10px">
+    {{ ((1 - (livro.precoPromocional / livro.preco)) * 100 | number:'1.0-0' }}% OFF
+  </div>
+  <img [src]="livro.imagemCapa || 'https://via.placeholder.com/200x300'" class="card-img-top" [alt]="livro.titulo" style="height: 200px; object-fit: contain;">
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted">{{ livro.autor }}</h6>
+    <h5 class="card-title">{{ livro.titulo }}</h5>
+    <div class="text-warning mb-2">{{ estrelasAvaliacao }}</div>
+    <h5 *ngIf="livro.precoPromocional" class="card-title text-danger">
+      R$ {{ livro.precoPromocional | number:'1.2-2' }}
+      <small class="text-muted text-decoration-line-through">R$ {{ livro.preco | number:'1.2-2' }}</small>
+    </h5>
+    <h5 *ngIf="!livro.precoPromocional" class="card-title">
+      R$ {{ livro.preco | number:'1.2-2' }}
+    </h5>
+    <button class="btn btn-primary w-100 mt-2" (click)="adicionarAoCarrinho()">
+      <i class="fas fa-cart-plus me-1"></i> Comprar
+    </button>
+  </div>
+</div> -->

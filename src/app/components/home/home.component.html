@@ -1,42 +1,46 @@
 <app-navbar></app-navbar>
 
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<!-- Seção Heroi -->
+<section class="secao-heroi text-center mb-5">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-4">Descubra seu próximo livro favorito</h1>
+    <p class="lead mb-4">Mais de 1 milhão de títulos para explorar</p>
+    <a href="#" class="btn btn-primary btn-lg">Ver Ofertas</a>
   </div>
+</section>
 
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="" class="d-block w-100" alt="Imagem 1">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Primeiro Slide</h5>
-        <p>Descrição do primeiro slide</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="" class="d-block w-100" alt="Imagem 2">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Segundo Slide</h5>
-        <p>Descrição do segundo slide</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="" class="d-block w-100" alt="Imagem 3">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Terceiro Slide</h5>
-        <p>Descrição do terceiro slide</p>
-      </div>
+<!-- Grade de Categorias -->
+<!-- <app-grade-categorias></app-grade-categorias> -->
+
+<!-- Lançamentos -->
+<section class="container mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Lançamentos</h2>
+    <a href="#" class="btn btn-outline-primary">Ver Todos</a>
+  </div>
+  <div class="row">
+    <div *ngFor="let livro of livrosDestaque" class="col-md-3 col-6 mb-4">
+      <app-card-livro [livro]="livro"></app-card-livro>
     </div>
   </div>
+</section>
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Próximo</span>
-  </button>
-</div>
+<!-- Promoções -->
+<section class="bg-light py-5 mb-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Promoções</h2>
+      <a href="#" class="btn btn-outline-primary">Ver Todos</a>
+    </div>
+    <div class="row">
+      <div *ngFor="let livro of livrosPromocao" class="col-md-3 col-6 mb-4">
+        <app-card-livro [livro]="livro"></app-card-livro>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<!-- <app-newsletter></app-newsletter>
+
+<app-rodape></app-rodape> -->
