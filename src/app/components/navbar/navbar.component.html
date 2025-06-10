@@ -3,7 +3,7 @@
 
     <div class="navbar-brand-container h-100 d-flex align-items-center" style="flex: 0 0 auto;">
       <a class="navbar-brand p-0" href="home">
-        <span class="brand-name">Secrets Essence</span>
+        <span class="brand-name">BookStore</span>
       </a>
     </div>
 
@@ -13,17 +13,47 @@
       </a>
     </div>
 
-    <div class="navbar-search flex-grow-1 d-flex justify-content-center">
-      <div class="search-container" style="width: 100%; max-width: 600px;">
-        <div class="position-relative w-100">
-          <i class="bi bi-search search-icon"></i>
-          <input class="search-input" type="search" placeholder="Pesquisar..." aria-label="Search" style="width: 100%; height: 42px; padding-left: 45px;">
-          <button class="btn-search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #888;">
-            <i class="bi bi-arrow-right"></i>
-          </button>
-        </div>
-      </div>
+  <div class="navbar-search flex-grow-1 d-flex justify-content-center position-relative">
+  <div class="search-container" style="width: 100%; max-width: 600px;">
+    <div class="position-relative w-100">
+      <i class="bi bi-search search-icon"></i>
+      <input
+        class="search-input"
+        type="search"
+        placeholder="Pesquisar..."
+        aria-label="Search"
+        style="width: 100%; height: 42px; padding-left: 45px;"
+        [(ngModel)]="searchQuery"
+        (input)="searchBooks()"
+      />
+      <button
+        class="btn-search"
+        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #888;"
+        (click)="searchBooks()"
+        type="button"
+      >
+        <i class="bi bi-arrow-right"></i>
+      </button>
+
+      <ul
+        *ngIf="searchResults.length > 0"
+        class="list-group position-absolute w-100"
+        style="z-index: 1000; max-height: 300px; overflow-y: auto; top: 45px; left: 0;"
+      >
+        <li
+          *ngFor="let book of searchResults"
+          class="list-group-item list-group-item-action"
+          (click)="selectBook(book)"
+          style="cursor: pointer;"
+        >
+          <strong>{{ book.volumeInfo.title }}</strong><br />
+          <small>{{ book.volumeInfo.authors?.join(', ') }}</small>
+        </li>
+      </ul>
     </div>
+  </div>
+</div>
+
 
     <div class="navbar-actions d-flex align-items-center" style="flex: 0 0 auto;">
       <div class="d-flex align-items-center">

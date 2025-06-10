@@ -1,38 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Livro } from '../interfaces/livros';
-
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarrinhoService {
-  private itensCarrinho: Livro[] = [];
+  private cartItems: any[] = [];
 
-  constructor() { }
-
-  adicionarAoCarrinho(livro: Livro): void {
-    this.itensCarrinho.push(livro);
+  getCartItems() {
+    return this.cartItems;
   }
 
-  removerDoCarrinho(livroId: string): void {
-    this.itensCarrinho = this.itensCarrinho.filter(item => item._id !== livroId);
+  addToCart(book: any) {
+    this.cartItems.push(book);
   }
 
-  obterItensCarrinho(): Livro[] {
-    return this.itensCarrinho;
+  removeFromCart(index: number) {
+    this.cartItems.splice(index, 1);
   }
 
-  obterQuantidadeItens(): number {
-    return this.itensCarrinho.length;
-  }
-
-  limparCarrinho(): void {
-    this.itensCarrinho = [];
-  }
-
-  obterTotal(): number {
-    return this.itensCarrinho.reduce((total, item) => {
-      return total + (item.precoPromocional || item.preco);
-    }, 0);
+  clearCart() {
+    this.cartItems = [];
   }
 }

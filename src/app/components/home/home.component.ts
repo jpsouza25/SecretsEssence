@@ -1,51 +1,33 @@
+// src/app/home/home.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Livro } from '../../interfaces/livros';
-import { LivroService } from '../../services/livro.service';
+
+import { BookListComponent } from "../book-list/book-list.component";
+import { BookCarouselComponent } from "../book-carousel/book-carousel.component";
 import { NavbarComponent } from "../navbar/navbar.component";
-import { CommonModule } from '@angular/common';
-import { CardLivroComponent } from "../card-livro/card-livro.component";
+import { livroService } from '../../services/livro.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  imports: [NavbarComponent, CommonModule, CardLivroComponent]
+  styleUrls: ['./home.component.css'],
+  imports: [BookListComponent, BookCarouselComponent, NavbarComponent],
 })
-export class InicioComponent implements OnInit {
-  livrosDestaque: Livro[] = [];
-  livrosPromocao: Livro[] = [];
-  carregando = true;
+export class HomeComponent implements OnInit {
+  highlightedBooks: any[] = [];
+  bestSellers: any[] = [];
+  newArrivals: any[] = [];
 
-  constructor(private livroService: LivroService) { }
+  constructor(private livroService: livroService) {}
 
   ngOnInit(): void {
-    this.carregarLivrosDestaque();
-    this.carregarLivrosPromocao();
-  }
 
-  carregarLivrosDestaque(): void {
-    this.livroService.obterLivrosDestaque().subscribe({
-      next: (livros) => {
-        this.livrosDestaque = livros;
-        this.carregando = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar destaques:', err);
-        this.carregando = false;
-      }
+    this.livroService.getBooks('bestseller').subscribe((res: any) => {
+      this.bestSellers = res.items.slice(0, 8);
     });
-  }
 
-  carregarLivrosPromocao(): void {
-    this.livroService.obterLivrosPromocao().subscribe({
-      next: (livros) => {
-        this.livrosPromocao = livros;
-        this.carregando = false;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar promoções:', err);
-        this.carregando = false;
-      }
+    this.livroService.getBooks('new').subscribe((res: any) => {
+      this.newArrivals = res.items.slice(0, 8);
     });
   }
 }

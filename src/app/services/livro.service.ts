@@ -1,29 +1,17 @@
+// src/app/book.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Livro } from '../interfaces/livros';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class LivroService {
-  private apiUrl = 'http://localhost:5000/api/livros';
+export class livroService {
+  private baseUrl = 'https://www.googleapis.com/books/v1/volumes';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  obterLivrosDestaque(): Observable<Livro[]> {
-    return this.http.get<Livro[]>(`${this.apiUrl}/destaques`);
-  }
-
-  obterLivrosPromocao(): Observable<Livro[]> {
-    return this.http.get<Livro[]>(`${this.apiUrl}/promocoes`);
-  }
-
-  obterLivrosPorCategoria(categoria: string): Observable<Livro[]> {
-    return this.http.get<Livro[]>(`${this.apiUrl}?categoria=${categoria}`);
-  }
-
-  buscarLivros(termo: string): Observable<Livro[]> {
-    return this.http.get<Livro[]>(`${this.apiUrl}?busca=${termo}`);
+  getBooks(query: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}?q=${query}`);
   }
 }

@@ -1,1 +1,68 @@
 <app-navbar></app-navbar>
+<div class="container mt-5 pt-5">
+  <div class="card cart-container">
+    <div class="card-body">
+      <h2 class="text-center mb-4 brand-name">Carrinho de Compras</h2>
+
+      <div class="row">
+        <!-- Lista de Produtos no Carrinho -->
+        <div class="col-lg-8">
+          <div *ngIf="cartItems.length > 0; else emptyCart">
+            <div class="card mb-4 cart-item-card" *ngFor="let item of cartItems; let i = index">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    src="{{ item.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150' }}"
+                    class="img-fluid rounded-start shadow-sm"
+                    alt="{{ item.volumeInfo.title }}"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ item.volumeInfo.title }}</h5>
+                    <p class="card-text">
+                      <strong>Autor(es):</strong> {{ item.volumeInfo.authors.join(', ') || 'Desconhecido' }}
+                    </p>
+                    <p class="card-text">
+                      <strong>Preço:</strong> R$ {{ item.price }}
+                    </p>
+                    <button class="btn btn-outline-danger btn-sm" (click)="removeItem(i)">
+                      <i class="bi bi-trash"></i> Remover
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #emptyCart>
+            <div class="alert text-center empty-cart">
+              Seu carrinho está vazio!
+            </div>
+          </ng-template>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card shadow order-summary">
+            <div class="card-body">
+              <h5 class="card-title">Resumo do Pedido</h5>
+              <hr />
+              <p>
+                <strong>Total de Itens:</strong> {{ cartItems.length }}
+              </p>
+              <p>
+                <strong>Valor Total:</strong> R$ {{ calculateTotal() }}
+              </p>
+              <button
+                class="btn w-100 mt-3 finalize-btn"
+                [disabled]="cartItems.length === 0"
+              >
+                Finalizar Compra
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

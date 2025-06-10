@@ -1,0 +1,47 @@
+/* src/app/book-list/book-list.component.css */
+.book-list {
+  background-color: rgba(0, 0, 0, 0); /* Fundo transparente com preto */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #343a40; /* Fundo escuro para o card */
+  color: #f8f9fa; /* Cor do texto para contraste */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #495057; /* Destaque na imagem */
+}
+
+.card-title {
+  font-size: 1.1rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+}
+
+.card .btn {
+  margin-top: 10px;
+  border: 1px solid #6c757d;
+  color: #f8f9fa;
+  background: transparent;
+}
+
+.card .btn:hover {
+  color: #212529;
+  background-color: #f8f9fa;
+}

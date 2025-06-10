@@ -1,0 +1,73 @@
+/* Título principal */
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, #e6d3a7, #d4af37, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Cards */
+.card {
+  background-color: rgba(15, 20, 30, 0.85);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: bold;
+}
+
+.card-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card .btn-outline-danger {
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+}
+
+.card .btn-outline-danger:hover {
+  background-color: #ff4d4d;
+  color: #fff;
+}
+
+/* Resumo do Pedido */
+.order-summary {
+  background-color: rgba(25, 30, 40, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.order-summary h5 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.order-summary .finalize-btn {
+  background-color: #6c63ff;
+  color: white;
+  border-radius: 25px;
+  transition: all 0.3s;
+}
+
+.order-summary .finalize-btn:hover {
+  background-color: #5a54cc;
+}
+
+/* Carrinho vazio */
+.empty-cart {
+  background-color: rgba(15, 20, 30, 0.85);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

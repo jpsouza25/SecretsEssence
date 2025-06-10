@@ -1,46 +1,5 @@
+<!-- src/app/home/home.component.html -->
 <app-navbar></app-navbar>
-
-<!-- Seção Heroi -->
-<section class="secao-heroi text-center mb-5">
-  <div class="container">
-    <h1 class="display-4 fw-bold mb-4">Descubra seu próximo livro favorito</h1>
-    <p class="lead mb-4">Mais de 1 milhão de títulos para explorar</p>
-    <a href="#" class="btn btn-primary btn-lg">Ver Ofertas</a>
-  </div>
-</section>
-
-<!-- Grade de Categorias -->
-<!-- <app-grade-categorias></app-grade-categorias> -->
-
-<!-- Lançamentos -->
-<section class="container mb-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Lançamentos</h2>
-    <a href="#" class="btn btn-outline-primary">Ver Todos</a>
-  </div>
-  <div class="row">
-    <div *ngFor="let livro of livrosDestaque" class="col-md-3 col-6 mb-4">
-      <app-card-livro [livro]="livro"></app-card-livro>
-    </div>
-  </div>
-</section>
-
-<!-- Promoções -->
-<section class="bg-light py-5 mb-5">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>Promoções</h2>
-      <a href="#" class="btn btn-outline-primary">Ver Todos</a>
-    </div>
-    <div class="row">
-      <div *ngFor="let livro of livrosPromocao" class="col-md-3 col-6 mb-4">
-        <app-card-livro [livro]="livro"></app-card-livro>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Newsletter -->
-<!-- <app-newsletter></app-newsletter>
-
-<app-rodape></app-rodape> -->
+<app-book-carousel [books]="highlightedBooks"></app-book-carousel>
+<app-book-list title="Mais Vendidos" [books]="bestSellers"></app-book-list>
+<app-book-list title="Novas Chegadas" [books]="newArrivals"></app-book-list>

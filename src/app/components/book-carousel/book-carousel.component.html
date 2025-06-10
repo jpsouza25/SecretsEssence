@@ -1,0 +1,67 @@
+<div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#bookCarousel"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#bookCarousel"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#bookCarousel"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div
+      class="carousel-item"
+      *ngFor="let book of books; let i = index"
+      [class.active]="i === 0"
+    >
+      <div class="d-flex justify-content-center">
+        <div class="card text-center shadow" style="width: 18rem; background-color: #343a40;">
+          <img
+            [src]="book.volumeInfo.imageLinks?.thumbnail"
+            class="card-img-top"
+            alt="{{ book.volumeInfo.title }}"
+            style="height: 200px; object-fit: cover;"
+          />
+          <div class="card-body text-light">
+            <h5 class="card-title">{{ book.volumeInfo.title }}</h5>
+            <p class="card-text">{{ book.volumeInfo.authors?.join(', ') }}</p>
+            <a href="#" class="btn btn-outline-light btn-sm">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#bookCarousel"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#bookCarousel"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
